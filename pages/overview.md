@@ -26,7 +26,7 @@ The function singleRvisualization will return two plots. One is created from sin
 
 It is also important to note that singleR has much more utility when data is more heterogeneous in celltype.
 
-SingleR outputs can be found at: under:
+SingleR outputs can be found at: under: https://www.dropbox.com/sh/ntabbv6rzb431um/AADFXA1voHhXvqK7dEqApYQEa?dl=0 at outputs under overall analysis of data
 
 
 
