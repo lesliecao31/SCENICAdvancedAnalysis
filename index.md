@@ -5,8 +5,8 @@ tagline: Unbiased single cell analysis of integrated single-cell data
 description: Minimal tutorial on making a simple website with GitHub Pages
 ---
 
-Unbiased analysis of integrated data with Seurat. Analyis must be done post quality control: https://satijalab.org/seurat/v3.2/pbmc3k_tutorial
-and post integration: https://satijalab.org/seurat/v3.2/multimodal_vignette .
+Unbiased analysis of integrated data with Seurat. Analyis must be done post quality control: (https://satijalab.org/seurat/v3.2/pbmc3k_tutorial)
+and post integration: (https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html)
 
 The first half of this workflow will:
 - Use singleR to investigate celltypes in a dataset
