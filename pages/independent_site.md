@@ -48,6 +48,7 @@ For mouse data:
     save(object, file = "object.Robj")
     
 for human data:
+
     m.s.genes <- cc.genes$s.genes
     m.g2m.genes <- cc.genes$g2m.genes
     object <- CellCycleScoring(object, s.features = m.s.genes, 
