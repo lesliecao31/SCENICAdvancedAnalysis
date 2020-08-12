@@ -11,8 +11,7 @@ This tutorial walks through an alignment of two groups of PBMCs from Kang et al,
 
 This object has been generated from the following Seurat walkthrough: https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html
 
-This is how clustering of data looks in seurat:
-
+These outputs can be found at: under:
 
 Clustering of data using singleR:
 
@@ -26,7 +25,8 @@ Clustering of data using singleR:
 The function singleRvisualization will return two plots. One is created from single cell data, and the other is microarray based. If you wish to run it using a human reference please use: advSCvis::singleRvisualization("object","h"), for mouse please use: advSCvis::singleRvisualization("object","m").
 
 It is also important to note that singleR has much more utility when data is more heterogeneous in celltype.
-Here are both annotated SingleR Plots:
+
+SingleR outputs can be found at: under:
 
 
 
