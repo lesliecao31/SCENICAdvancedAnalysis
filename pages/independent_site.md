@@ -3,7 +3,9 @@ layout: page
 title: Sample workflow
 description: Start to finish workflow for data processing and visualization
 ---
+### ALL CODE AVAILABLE AT
 ### ALL OUTPUTS ARE AVAILABLE AT 
+
 ### First Steps
 
 Start by installing packages
@@ -71,7 +73,7 @@ If mouse:
 
     advSCvis::stringDBvis("object","celltypes","stim","m") 
     
-### Step 3: Run user interactive subclustering integration and visualization (Outputs under analysis of all reclustered celltypes)
+### Step 3: Run user interactive subclustering integration and visualization (Outputs under: Analysis of all reclustered celltypes)
 Choose cells that have > 20 cells from each group to recluster:
 
     celltypes <- list("CD14 Mono","CD4 Memory T","T activated" ,"CD4 Naive T", 
@@ -80,7 +82,9 @@ Choose cells that have > 20 cells from each group to recluster:
 
 Now we integrate and subcluster. The code below will need to be modified for each dataset that it is run on. It will allow users to recluster and reintegrate all of their celltypes prior defined. An elbow plot will come up on the plots section of the screen and the user will enter in the number of PC's desired from the elbow plot. This is a long step that is very computationally intensive and will take approx. 3-20 minutes depending on the size of the seurat object. If this step is confusing to any, please feel free to reach out to rohit.arora2@ucalgary.ca and lesliecao4@gmail.com. The outputs of this code will be made for each celltype and include the object either integrated or reclustered (if it is large enough to be integrated then integrated, if not then reclustered), as well as a umap of seurat clusters, a umap split by group, and a umap grouped by group. This loop will return a folder for each celltype passed in as a list.
 
-### Step 4: Run a set of visualization functions on the subclustered data (Outputs under analysis of all reclustered celltypes in each celltype folder)
+### Step 4: Run a set of visualization functions on the subclustered data (Outputs Under: Analysis of all reclustered celltypes in each celltype folder)
+
+Run this code in the working directory with all the new folders generated from step 3:
 
     for (celltype in celltypes){
       setwd(celltype)
