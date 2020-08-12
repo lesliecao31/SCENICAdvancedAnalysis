@@ -4,7 +4,7 @@ title: Sample workflow
 description: Start to finish workflow for data processing and visualization
 ---
 
-### First things
+### First Steps
 
 Start by installing packages
 
@@ -18,6 +18,8 @@ Start by installing packages
     library(SingleR)
     library(scater)
     library(biomaRt)
+    library(clustree)
+    library(ggplot2)
 
 *The version of complexheatmap must be 2.2.0
 
@@ -59,7 +61,7 @@ for human data:
     advSCvis::clustreeplot("object")
     advSCvis::correlationplots("object","celltypes","stim")
     
-Optionally to visualize protien interactions of thirty signature genes :
+Optional step to visualize protien interactions of thirty signature genes:
 
 If human:
 
