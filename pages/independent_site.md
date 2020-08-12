@@ -12,6 +12,8 @@ Start by installing packages
     library(Seurat)
     library(Seurat)
     library(dplyr)
+    library(tidyr)
+    library(stringr)
     library(patchwork)
     library(EnhancedVolcano)
     library(ComplexHeatmap)
