@@ -24,7 +24,7 @@ Start by installing packages
     devtools::install_github('Rohitarora21/SCAS')
     library(advSCvis)
     
-In this example, we will be using a dataset of two groups of PBMCs from Kang et al, 2017. These two groups have been split by a column in metadata in the seurat object called "stim"
+In this example, we will be using a dataset of two groups of PBMCs from Kang et al, 2017. These two groups have been split by a column in metadata in the seurat object called: "stim", celltype annotations are stored in: , and object is saved as "object".
 
 ### Step 1: Run cell cycle scores on whole dataset and save object
 
@@ -49,5 +49,21 @@ for human data:
     save(object, file = "object.Robj")
     
 ### Step 2: Run a set of visualization functions on the whole data
+
+    advSCvis::CellCyclevis("object","celltypes","stim")
+    advSCvis::piechartvisualizer("object","celltypes","stim")
+    advSCvis::chisquaredtest("object","celltypes","stim")
+    advSCvis::clustreeplot("object")
+    advSCvis::correlationplots("object","celltypes","stim")
+    
+Optionally to visualize protien interactions:
+If human:
+
+    advSCvis::stringDBvis("object","celltypes","stim","h") 
+    
+If mouse:
+
+    advSCvis::stringDBvis("object","celltypes","stim","m") 
+    
 ### Step 3: Run user interactive subclustering integration and visualization
 ### Step 4: Run a set of visualization functions on the subclustered data
