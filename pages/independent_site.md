@@ -21,4 +21,7 @@ Start by installing packages
 
 *The version of complexheatmap must be 2.2.0
 
-
+### Step 1: run cell cycle scores on whole dataset and save object
+### Step 2: Run a set of visualization functions on the whole data
+### Step 3: Run user interactive subclustering integration and visualization
+### Step 4: Run a set of visualization functions on the subclustered data
