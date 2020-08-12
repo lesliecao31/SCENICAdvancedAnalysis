@@ -16,7 +16,8 @@ These GitHub Pages sites are constructed by having a `gh-pages` branch
 of a GitHub repository, with specific files layed out in a specific
 way. To see the structure of such a repository, look at the
 [repository for the present site](https://github.com/kbroman/simple_site).
-
+    hello/
+   
     _includes/
     _layouts/
     _plugins/
