@@ -9,6 +9,8 @@ Simple annotation of data using the singleRvisualization function.
 This tutorial walks through an alignment of two groups of PBMCs from Kang et al, 2017. In this experiment, PBMCs were split into a stimulated and control group and the stimulated group was treated with interferon beta. The response to interferon caused cell type specific gene expression changes that makes a joint analysis of all the data difficult, with cells clustering both by stimulation condition and by cell type.
 (https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html)
 
+This object has been generated from the following Seurat walkthrough: https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html
+
 This is how clustering of data looks in seurat:
 
 
