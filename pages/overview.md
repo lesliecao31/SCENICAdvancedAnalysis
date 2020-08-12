@@ -11,7 +11,7 @@ This tutorial walks through an alignment of two groups of PBMCs from Kang et al,
 
 This object has been generated from the following Seurat walkthrough: https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html
 
-These outputs can be found at: under:
+These outputs can be found at: under: Overall analysis of data in the SingleR folder.
 
 Clustering of data using singleR:
 
