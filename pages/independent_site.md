@@ -30,6 +30,10 @@ In this example, we will be using a dataset of two groups of PBMCs from Kang et 
 
     load(file = object.Robj)
     
+Make sure to set the default assay to RNA. 
+
+    DefaultAssay(object) = "RNA"
+    
 For mouse data:
 
     m.s.genes <- advSCvis::convertHumanGeneList(cc.genes.updated.2019$s.genes)
@@ -40,9 +44,8 @@ For mouse data:
     save(object, file = "object.Robj")
     
 for human data:
-
-    s.genes <- cc.genes$s.genes
-    g2m.genes <- cc.genes$g2m.genes
+    m.s.genes <- cc.genes$s.genes
+    m.g2m.genes <- cc.genes$g2m.genes
     object <- CellCycleScoring(object, s.features = m.s.genes, 
                           g2m.features = m.g2m.genes, 
                           set.ident = TRUE)
@@ -56,7 +59,8 @@ for human data:
     advSCvis::clustreeplot("object")
     advSCvis::correlationplots("object","celltypes","stim")
     
-Optionally to visualize protien interactions:
+Optionally to visualize protien interactions of thirty signature genes :
+
 If human:
 
     advSCvis::stringDBvis("object","celltypes","stim","h") 
@@ -66,4 +70,5 @@ If mouse:
     advSCvis::stringDBvis("object","celltypes","stim","m") 
     
 ### Step 3: Run user interactive subclustering integration and visualization
+
 ### Step 4: Run a set of visualization functions on the subclustered data
