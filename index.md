@@ -19,6 +19,7 @@ The first half of this workflow will:
 The second half of this workflow will:
 - Integrate and recluster celltypes in order to investigate changes on a more granular level. Perform all analyses that were done on the global scale on each subcluster as well as create volcano plots.
 
+If you would like to see the outputs of this analysis, they are available at:
 ---
 
 - [Using SingleR](pages/overview.html)
