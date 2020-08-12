@@ -24,6 +24,8 @@ Clustering of data using singleR:
         advSCvis::singleRvisualization("object","h")
         
 The function singleRvisualization will return two plots. One is created from single cell data, and the other is microarray based. If you wish to run it using a human reference please use: advSCvis::singleRvisualization("object","h"), for mouse please use: advSCvis::singleRvisualization("object","m").
+
+It is also important to note that singleR has much more utility when data is more heterogeneous in celltype.
 Here are both annotated SingleR Plots:
 
 
