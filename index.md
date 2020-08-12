@@ -1,17 +1,26 @@
 ---
 layout: page
-title: Single Cell Analysis with Seurat
-tagline: Advanced and unbiased single cell analysis of integrated single-cell data
+title: Advanced Single Cell Analysis with Seurat
+tagline: Unbiased single cell analysis of integrated single-cell data
 description: Minimal tutorial on making a simple website with GitHub Pages
 ---
 
-For me, the painful aspects of making a website are
+Unbiased analysis of integrated data with Seurat.
 
-- Working with html and css
-- Finding a hosting site
+The first half of this workflow will:
+- Create piecharts on celltype distributions
+- Visualize cellcycle scoring on celltypes
+- Visualize correlations in gene expression between two groups
+- Find correlated networks of protiens that differ in celltypes between two groups using stringDB v10.0
+- 
 - Transferring stuff to the hosting site
 
-
+The second half of this workflow will:
+- Integrate and recluster celltypes in order to investigate changes on a more granular level
+- Visualize cellcycle scoring on celltypes
+- Visualize correlations in gene expression between two groups
+- Find correlated networks of protiens that differ in celltypes between two groups using stringDB v10.0
+- 
 
 The [GitHub](https://pages.github.com) and
 [Jekyll](https://jekyllrb.com) documentation is great, but I thought it
