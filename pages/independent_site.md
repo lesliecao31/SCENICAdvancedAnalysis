@@ -3,8 +3,8 @@ layout: page
 title: Sample workflow
 description: Start to finish workflow for data processing and visualization
 ---
-### ALL CODE AVAILABLE AT
-### ALL OUTPUTS ARE AVAILABLE AT 
+### All visualization outputs are available at:
+### All code is available at:
 
 ### First Steps
 
@@ -32,7 +32,7 @@ In this example, we will be using a dataset of two groups of PBMCs from Kang et 
 
 ### Step 1: Run cell cycle scores on whole dataset and save object
 
-    load(file = object.Robj)
+    load(file = "object.Robj")
     
 Make sure to set the default assay to RNA. 
 
