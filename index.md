@@ -28,4 +28,5 @@ If you would like to see the outputs of this analysis, they are available at: ht
 
 ---
 If anything here is confusing (or _wrong_!), or if we've missed
-important details, please send an email to rohit.arora2@ucalgary.ca and lesliecao4@gmail.com
+important details, please send an email to rohit.arora2@ucalgary.ca and leslie.cao@alumni.ubc.ca
+
