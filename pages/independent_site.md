@@ -204,3 +204,12 @@ Run this code in the working directory with all the new folders generated from s
       setwd('..')
     }
 
+Optional for stringDB:
+
+    for (celltype in celltypes){
+      setwd(celltype)
+       advSCvis::stringDBvis("x","seurat_clusters","stim","h") 
+      setwd('..')
+    }
+
+Stay tuned for more updates...
