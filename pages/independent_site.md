@@ -4,6 +4,8 @@ title: Sample workflow
 description: Start to finish workflow for SCENIC output analysis and visualization
 ---
 
+This sample workflow walks through analysis of SCENIC outputs across two groups (e.g. timepoints, treatments, celltypes). 
+
 ### First Steps
 
 Start by installing packages
@@ -24,187 +26,48 @@ Start by installing packages
         library(ggrepel)
         library(EnhancedVolcano)
 
-### Step 1: Run cell cycle scores on whole dataset and save object
+### Step 1: Identify group specific transciption factors (TFs) 
 
     load(file = "object.Robj")
     
-Make sure to set the default assay to RNA. 
+Perform specificity scoring (using Jensen-Shannon divergence): 
 
-    DefaultAssay(object) = "RNA"
+    advSCENICvis::specifcityplotting(objectname, regulonAUC, stratvar)
     
-For mouse data:
+Where "objectname" is the name of the Suerat object, "regulonAUC" is the name of the 3.4_regulonAUC SCENIC RDS file output (this .rds file must be in your working directory), and "stratvar" is the name of the variable of the two groups being compared across (must be the same as the name of the column in the Seurat object's metadata). This step returns two plots, one for each of the groups being compared and a CSV document containing specificity scores for every transcription factor for each group. 
 
-    m.s.genes <- advSCvis::convertHumanGeneList(cc.genes.updated.2019$s.genes)
-    m.g2m.genes <- advSCvis::convertHumanGeneList(cc.genes.updated.2019$g2m.genes)
-    object <- CellCycleScoring(object,s.features = m.s.genes, 
-                              g2m.features = m.g2m.genes, 
-                              set.ident = TRUE)
-    save(object, file = "object.Robj")
+Example implementation for a Suerat object named "x", regulonAUC file named "3.4_regulonAUC", and stratifying variabld named "CellType" in the object's metadata:
+
+        advSCENICvis::specifcityplotting("x", "3.4_regulonAUC", "CellType")
     
-for human data:
+### Step 2: Identify and visualize differentially enriched TFs between the two comparison groups 
 
-    m.s.genes <- cc.genes$s.genes
-    m.g2m.genes <- cc.genes$g2m.genes
-    object <- CellCycleScoring(object, s.features = m.s.genes, 
-                          g2m.features = m.g2m.genes, 
-                          set.ident = TRUE)
-    save(object, file = "object.Robj")
+        advSCENICvis::SCENICvolcano(objectname, regulonAUC, stratvar)
     
-### Step 2: Run a set of visualization functions on the whole data (Outputs under overall analysis of data in dropbox) 
+The inputs to the SCENICvolcano function are the same as for specificity scoring. This step returns a volcano plot with differentially enriched TFs in red (and all other TFs in blue) as well as a CSV stats file containing p values and average log fold change values for every TF. Note, if the stratifying variable contains more than two unique groups, then this function will create volcano plots/stats files for all unique pairwise group comparisons. 
 
-    advSCvis::CellCyclevis("object","celltypes","stim")
-    advSCvis::piechartvisualizer("object","celltypes","stim")
-    advSCvis::chisquaredtest("object","celltypes","stim")
-    advSCvis::correlationplots("object","celltypes","stim")
-    advSCvis::clustreeplot("object")
-    
-If an error occurs at the clustree step, it is likely that the assay is not set to integrated at this point. Please set the assay to integrated, save the object, and run the clustree function again.
+Example implementation for a Suerat object named "x", regulonAUC file named "3.4_regulonAUC", and stratifying variabld named "CellType" in the object's metadata:
 
-Optional step to visualize protien interactions of thirty signature genes:
+        advSCENICvis::SCENICvolcano("x", "3.4_regulonAUC", "CellType")
 
-If human:
+### Step 3: Visualize AUC value distributions of TFs using histograms and violin plots
 
-    advSCvis::stringDBvis("object","celltypes","stim","h") 
-    
-If mouse:
+    advSCENICvis::SCENICplots(object, split.by, regulonAUC)
 
-    advSCvis::stringDBvis("object","celltypes","stim","m") 
-    
-### Step 3: Run user interactive subclustering integration and visualization (Outputs under: Analysis of all reclustered celltypes)
-Choose cells that have > 20 cells from each group to recluster:
+The inputs to this function are similar to before. "object" is the name of the Seurat object, "split.by" is the name of the stratyfing variable, and "regulonAUC" is the name of the 3.4_regulonAUC SCENIC RDS file output (.rds file needs to be in the working directory). This function creates two new directories, one for plot outputs with p values for all pairwise group comparisons, and the other for plot outputs without p values. For each transcription factor, an original and lognormally transformed histogram and violin plot are created; both plot types are split by the stratifying variable. Steps 1 and 2 can be used to inform which TF plots are of most interest for further analysis. 
 
-    celltypes <- list("CD14 Mono","CD4 Memory T","T activated" ,"CD4 Naive T", 
-                  "Mk", "B Activated", "B","DC",            
-                  "CD16 Mono","NK","CD8 T")
+Example implementation for a Suerat object named "x", regulonAUC file named "3.4_regulonAUC", and stratifying variabld named "CellType" in the object's metadata:
 
-Now we integrate and subcluster. The code below will need to be modified for each dataset that it is run on. It will allow users to recluster and reintegrate all of their celltypes prior defined. An elbow plot will come up on the plots section of the screen and the user will enter in the number of PC's desired from the elbow plot. This is a long step that is very computationally intensive and will take approx. 3-20 minutes depending on the size of the seurat object. If this step is confusing to any, please feel free to reach out to rohit.arora2@ucalgary.ca and leslie.cao@alumni.ubc.ca. The outputs of this code will be made for each celltype and include the object either integrated or reclustered (if it is large enough to be integrated then integrated, if not then reclustered), as well as a umap of seurat clusters, a umap split by group, and a umap grouped by group. This loop will return a folder for each celltype passed in as a list.
+        advSCENICvis::SCENICvolcano("x", "CellType", "3.4_regulonAUC")
 
-        for (celltype in celltypes){
-          tryCatch(
-            {
-              Idents(object) = "celltypes"
-              obj <- subset(object, idents = celltype)
-              DefaultAssay(obj) <- "RNA"
-              HIC_S <- SplitObject(obj, split.by = "stim")
+### Step 4: Plot global transcription factor activtion for groups of interest
 
-              for (i in 1:length(HIC_S)) {
-                HIC_S[[i]] <- NormalizeData(HIC_S[[i]], verbose = FALSE)
-                HIC_S[[i]] <- FindVariableFeatures(HIC_S[[i]], selection.method = "vst", 
-                                                   nfeatures = 2000, verbose = FALSE)
-              }
+        advSCENICvis::GlobalHistograms(object, split.by, regulonAUC)
+       
+The inputs to this function are the same as in Step 3. The output of this step are two histograms (original and lognormally transformed) that plot AUC score density across all TFs in the dataset. Once again, these plots are split by the stratifying variable. Although this plot cannot directly inform which TFs are contributing to the AUC scores depicted, it can be helpful in comparing global transcription factor activation across the groups of interest. 
 
-              reference.list <- HIC_S[c("CTRL", "STIM")]
-              HIC_S.anchors <- FindIntegrationAnchors(object.list = reference.list, dims = 1:20)
-              HIC_S.integrated <- IntegrateData(anchorset = HIC_S.anchors, dims = 1:20)
+### Step 5: Interactive visualization of data
 
-              library(ggplot2)
-              library(cowplot)
-              library(patchwork)
-              DefaultAssay(HIC_S.integrated) <- "integrated"
-
-              HIC_S.integrated <- ScaleData(HIC_S.integrated, verbose = FALSE)
-              HIC_S.integrated <- RunPCA(HIC_S.integrated, npcs = 20, verbose = FALSE)
-              HIC_S.integrated <- RunUMAP(HIC_S.integrated, reduction = "pca", dims = 1:20)
-
-              dir.create(celltype)
-              setwd(celltype)
-
-              print(ElbowPlot(HIC_S.integrated, ndims = 50))
-
-              svg(filename = "elbowplot.svg")
-              print(ElbowPlot(HIC_S.integrated, ndims = 20))
-              dev.off()
-
-              {input <- as.numeric(readline())}
-              Sys.sleep(30)
-
-              x <- FindNeighbors(HIC_S.integrated, dims = 1:input)
-              x <- FindClusters(x, resolution = 0.5)
-              x <- RunUMAP(x, dims = 1:input)
-
-              save(x, file = "x.Robj")
-
-              svg(filename = paste(celltype, "integrated.svg", sep = ""))
-              print(DimPlot(x, reduction = "umap", label = T))
-              dev.off()
-
-              svg(filename = paste(celltype, "integratedsplit.svg", sep = ""))
-              print(DimPlot(x, reduction = "umap", split.by = 'stim'))
-              dev.off()
-
-              svg(filename = paste(celltype, "integratedgroup.svg", sep = ""))
-              print(DimPlot(x, reduction = "umap", group.by = 'stim'))
-              dev.off()
-
-              setwd('..')
-            },
-            error=function(e) {
-              Idents(object) = "celltypes"
-              obj <- subset(object, idents = celltype)
-              DefaultAssay(obj) <- "RNA"
-
-              HIC <- NormalizeData(obj, normalization.method = "LogNormalize", scale.factor = 10000)
-              HIC <- FindVariableFeatures(HIC, selection.method = "vst", nfeatures = 2000)
-
-              HIC <- ScaleData(HIC, verbose = FALSE)
-              HIC <- RunPCA(HIC, npcs = 20, verbose = FALSE)
-              HIC <- RunUMAP(HIC, reduction = "pca", dims = 1:20)
-
-              dir.create(celltype)
-              setwd(celltype)
-
-              print(ElbowPlot(HIC, ndims = 50))
-
-              svg(filename = "elbowplot.svg")
-              print(ElbowPlot(HIC, ndims = 20))
-              dev.off()
-
-              {input <- as.numeric(readline())}
-              Sys.sleep(30)
-
-              x <- FindNeighbors(HIC, dims = 1:input)
-              x <- FindClusters(x, resolution = 0.5)
-              x <- RunUMAP(x, dims = 1:input)
-
-              save(x, file = "x.Robj")
-              svg(filename = paste(celltype, ".svg", sep = ""))
-              print(DimPlot(x, reduction = "umap", label = T))
-              dev.off()
-
-              svg(filename = paste(celltype, "split.svg", sep = ""))
-              print(DimPlot(x, reduction = "umap", split.by = 'stim'))
-              dev.off()
-
-              svg(filename = paste(celltype, "group.svg", sep = ""))
-              print(DimPlot(x, reduction = "umap", group.by = 'stim'))
-              dev.off()
-
-              setwd('..')
-            })
-        }
-
-
-### Step 4: Run a set of visualization functions on the subclustered data (Outputs Under: Analysis of all reclustered celltypes in each celltype folder)
-
-Run this code in the working directory with all the new folders generated from step 3:
-
-    for (celltype in celltypes){
-      setwd(celltype)
-       advSCvis::CreateVolcanoPlot("x","stim","CTRL","STIM")
-       advSCvis::piechartvisualizer("x","seurat_clusters","stim")
-       advSCvis::correlationplots("x","seurat_clusters","stim")
-       advSCvis::clustreeplot("x")
-       advSCvis::chisquaredtest("x","seurat_clusters","stim")
-       advSCvis::CellCyclevis("x","seurat_clusters","stim")
-      setwd('..')
-    }
-
-Optional for stringDB:
-
-    for (celltype in celltypes){
-      setwd(celltype)
-       advSCvis::stringDBvis("x","seurat_clusters","stim","h") 
-      setwd('..')
-    }
-
-Stay tuned for more updates...
+        advSCENICvis::AUCVisualizer(strat,Xobj = "x.Robj",tSNE = "tSNE_AUC_50pcs_50perpl.Rds",scenicOptions = "scenicOptions.Rds",PathToRegulonAUC = "3.4_regulonAUC.Rds",      PathToCellInfo = "cellInfo.Rds")
+        
+To use the default inputs to the AUCVisualizer function (shown above), enter "Celltype" as the only arguement. Otherwise, 
