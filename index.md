@@ -23,9 +23,7 @@ If you would like to see the outputs of this analysis, they are available at: [B
 
 ---
 
-- [Using SingleR](pages/overview.html)
 - [Sample Workflow With Two Groups](pages/independent_site.html)
-- [Sample Workflow With Multiple Groups](pages/resources.html)
 
 ---
 If anything here is confusing (or _wrong_!), or if we've missed
