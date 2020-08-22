@@ -14,6 +14,6 @@ Adding SCENIC tSNE embeddings:
 
                 advSCENICvis::SCENICembeddings("object", "tSNE")
                 
-The "object" input is the name of the Seurat object. The "tSNE" input is the name of the 50pcs, 50perpl RDS file output from SCENIC. 
+The "object" input is the name of the Seurat object. The "tSNE" input is the name of the 50pcs, 50perpl RDS file output from SCENIC (the .rds file must be in your working directory). 
 
 
