@@ -15,11 +15,6 @@ This workflow will:
 - Plot global transcription factor activation of groups of interest
 - Interactive visualization of downstream gene targets and TF activation using RShiny 
 
-The second half of this workflow will:
-- Integrate and recluster celltypes in order to investigate changes on a more granular level. Perform all analyses that were done on the global scale on each subcluster as well as create volcano plots.
-
-If you would like to see the outputs of this analysis, they are available at: [Biernaskie lab dropbox](https://www.dropbox.com/sh/ntabbv6rzb431um/AADFXA1voHhXvqK7dEqApYQEa?dl=0)
-
 ---
 
 - [Adding SCENIC tSNE embeddings to Seurat object](pages/overview.html)
