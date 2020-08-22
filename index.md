@@ -5,8 +5,8 @@ tagline: Unbiased regulon activation analysis of SCENIC data across multiple gro
 description: Minimal tutorial on making a simple website with GitHub Pages
 ---
 
-Unbiased analysis of integrated data with Seurat. Analyis must be done post quality control: [visit the tutorial](https://satijalab.org/seurat/v3.2/pbmc3k_tutorial)
-and post integration: [visit the tutorial](https://satijalab.org/seurat/v3.2/immune_alignment)
+SCENIC performs gene-regulatory network inference: [familiarize with SCENIC](https://www.nature.com/articles/nmeth.4463) This analysis must be run after intalling and running SCENIC on dataset and is specific to Seurat objects: [visit the installation tutorial](https://rawcdn.githack.com/aertslab/SCENIC/701cc7cc4ac762b91479b3bd2eaf5ad5661dd8c2/inst/doc/SCENIC_Setup.html) [visit the SCENIC tutorial](https://rawcdn.githack.com/aertslab/SCENIC/0a4c96ed8d930edd8868f07428090f9dae264705/inst/doc/SCENIC_Running.html#scenic_workflow)
+
 
 This workflow will:
 - Use singleR to investigate celltypes in a dataset
