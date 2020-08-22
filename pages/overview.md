@@ -1,32 +1,19 @@
 ---
 layout: page
-title: SingleR annotation on Seurat Data
-description: simple annotation using the function singleRvisualization
+title: SCENIC tSNE embeddings
+description: adding SCENIC tSNE embeddings to Seurat object
 ---
 
-Simple annotation of data using the singleRvisualization function.
+Add SCENIC tSNE embeddings to Seurat object.
 
-This tutorial walks through an alignment of two groups of PBMCs from Kang et al, 2017. In this experiment, PBMCs were split into a stimulated and control group and the stimulated group was treated with interferon beta. The response to interferon caused cell type specific gene expression changes that makes a joint analysis of all the data difficult, with cells clustering both by stimulation condition and by cell type.
-(https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html)
+SCENIC performs T-distributed Stochastic Neighbor Embedding (tSNE) method of dimensionality reduction. This tutorial walks how to add tSNE embeddings to the Seurat object that SCENIC was performed on. It adds a reduction called "scenic" and creates two new columns in the object's metadata for the first two tSNE principle components.
 
-This object has been generated from the following Seurat walkthrough: [visit the tutorial](https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html)
+Seurat objects can be created from the following walkthrough: [visit the tutorial](https://satijalab.org/seurat/v3.2/pbmc3k_tutorial.html)
 
-These outputs can be found at: under: Overall analysis of data in the SingleR folder.
+Adding SCENIC tSNE embeddings:
 
-Clustering of data using singleR:
-
-        library(SingleR)
-        library(Seurat)
-        library(scater)
-        devtools::install_github('Rohitarora21/SCAS')
-        library(advSCvis)
-        advSCvis::singleRvisualization("object","h")
-        
-The function singleRvisualization will return two plots. One is created from single cell data, and the other is microarray based. If you wish to run it using a human reference please use: advSCvis::singleRvisualization("object","h"), for mouse please use: advSCvis::singleRvisualization("object","m").
-
-It is also important to note that singleR has much more utility when data is more heterogeneous in celltype.
-
-SingleR outputs can be found at: under: [visit singleR results](https://www.dropbox.com/sh/ntabbv6rzb431um/AADFXA1voHhXvqK7dEqApYQEa?dl=0) at outputs under overall analysis of data
-
+                advSCENICvis::SCENICembeddings("object", "tSNE")
+                
+The "object" input is the name of the Seurat object. The "tSNE" input is the name of the 50pcs, 50perpl RDS file output from SCENIC. 
 
 
