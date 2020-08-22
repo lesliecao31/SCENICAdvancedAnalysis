@@ -1,30 +1,27 @@
 ---
 layout: page
 title: Sample workflow
-description: Start to finish workflow for data processing and visualization
+description: Start to finish workflow for SCENIC output analysis and visualization
 ---
-### All code and visualization outputs are available at: [Biernaskie Lab Dropbox](https://www.dropbox.com/sh/ntabbv6rzb431um/AADFXA1voHhXvqK7dEqApYQEa?dl=0)
 
 ### First Steps
 
 Start by installing packages
 
-    library(Seurat)
-    library(Seurat)
-    library(dplyr)
-    library(tidyr)
-    library(stringr)
-    library(patchwork)
-    library(EnhancedVolcano)
-    library(ComplexHeatmap)
-    library(STRINGdb)
-    library(SingleR)
-    library(scater)
-    library(biomaRt)
-    library(clustree)
-    library(ggplot2)
-
-*The version of complexheatmap must be 2.2.0
+        library(ggplot2)
+        library(dplyr)
+        library(AUCell)
+        library(tidyr)
+        library(tidyverse)
+        library(stringr)
+        library(ggpubr)
+        library(Seurat)
+        library(plyr)
+        library(tidyverse)
+        library(reshape2)
+        library(philentropy)
+        library(ggrepel)
+        library(EnhancedVolcano)
 
     devtools::install_github('Rohitarora21/SCAS')
     library(advSCvis)
