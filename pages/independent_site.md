@@ -68,6 +68,6 @@ The inputs to this function are the same as in Step 3. The output of this step a
 
 ### Step 5: Interactive visualization of data
 
-        advSCENICvis::AUCVisualizer(strat,Xobj = "x.Robj",tSNE = "tSNE_AUC_50pcs_50perpl.Rds",scenicOptions = "scenicOptions.Rds",PathToRegulonAUC = "3.4_regulonAUC.Rds",      PathToCellInfo = "cellInfo.Rds")
+        advSCENICvis::AUCVisualizer(strat, Xobj = "x.Robj",tSNE = "tSNE_AUC_50pcs_50perpl.Rds",scenicOptions = "scenicOptions.Rds",PathToRegulonAUC = "3.4_regulonAUC.Rds",      PathToCellInfo = "cellInfo.Rds")
         
-To use the default inputs to the AUCVisualizer function (shown above), enter "Celltype" as the only arguement. Otherwise, 
+To use the default inputs to the AUCVisualizer function (shown above), enter "Celltype" as the only arguement. Otherwise, specify the arguments using the names of the files in your working directory. scenicOptions.Rds is a SCENIC input; tSNE_AUC_50pcs_50perpl.Rds, 3.4_regulonAUC.Rds are SCENIC outputs, and cellInfo.Rds contains columns of the Seurat object metadata of stratifying variables of interest. All .Rds files must be in the working directory. 
