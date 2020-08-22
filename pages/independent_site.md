@@ -40,7 +40,7 @@ Example implementation for a Suerat object named "x", regulonAUC file named "3.4
 
         advSCENICvis::specifcityplotting("x", "3.4_regulonAUC", "CellType")
     
-### Step 2: Identify and visualize differentially enriched TFs between the two comparison groups 
+### Step 2: Identify and visualize differentially enriched TFs (fold change is currently arbitrary) between the two comparison groups 
 
         advSCENICvis::SCENICvolcano(objectname, regulonAUC, stratvar)
     
