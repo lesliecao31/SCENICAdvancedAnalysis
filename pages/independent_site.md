@@ -8,6 +8,7 @@ description: Start to finish workflow for SCENIC output analysis and visualizati
 
 Start by installing packages
 
+        library(advSCENICvis)
         library(ggplot2)
         library(dplyr)
         library(AUCell)
@@ -22,11 +23,6 @@ Start by installing packages
         library(philentropy)
         library(ggrepel)
         library(EnhancedVolcano)
-
-    devtools::install_github('Rohitarora21/SCAS')
-    library(advSCvis)
-    
-In this example, we will be using a dataset of two groups of PBMCs from Kang et al, 2017. These two groups have been split by a column in metadata in the seurat object called: "stim", celltype annotations are stored in: "celltypes", and the object is saved as "object".
 
 ### Step 1: Run cell cycle scores on whole dataset and save object
 
