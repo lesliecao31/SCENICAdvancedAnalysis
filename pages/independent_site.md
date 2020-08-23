@@ -40,11 +40,11 @@ Example implementation for a Suerat object named "x", regulonAUC file named "3.4
 
         advSCENICvis::specifcityplotting("x", "3.4_regulonAUC", "CellType")
     
-### Step 2: Identify and visualize differentially enriched TFs (fold change is currently arbitrary) between the two comparison groups 
+### Step 2: Identify and visualize differentially enriched TFs (fold change cut offs are currently arbitrary) between the two comparison groups 
 
         advSCENICvis::SCENICvolcano(objectname, regulonAUC, stratvar)
     
-The inputs to the SCENICvolcano function are the same as for specificity scoring. This step returns a volcano plot with differentially enriched TFs in red (and all other TFs in blue) as well as a CSV stats file containing p values and average log fold change values for every TF. Note, if the stratifying variable contains more than two unique groups, then this function will create volcano plots/stats files for all unique pairwise group comparisons. 
+The inputs to the SCENICvolcano function are the same as for specificity scoring. This step returns a volcano plot with differentially enriched TFs in red (and all other TFs in blue) as well as a CSV stats file containing p values and average log fold change values for every TF. Note, comparisons can be done between any number of groups. If the stratifying variable contains more than two unique groups, then this function will create volcano plots/stats files for all unique pairwise group comparisons. 
 
 Example implementation for a Suerat object named "x", regulonAUC file named "3.4_regulonAUC", and stratifying variabld named "CellType" in the object's metadata:
 
@@ -58,7 +58,7 @@ The inputs to this function are similar to before. "object" is the name of the S
 
 Example implementation for a Suerat object named "x", regulonAUC file named "3.4_regulonAUC", and stratifying variabld named "CellType" in the object's metadata:
 
-        advSCENICvis::SCENICvolcano("x", "CellType", "3.4_regulonAUC")
+        advSCENICvis::SCENICplots("x", "CellType", "3.4_regulonAUC")
 
 ### Step 4: Plot global transcription factor activtion for groups of interest
 
